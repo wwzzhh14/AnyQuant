@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- @version $Id: applicationContext.xml 561608 2007-08-01 00:33:12Z vgritsenko $ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:db.properties"/>
+  </bean>
+
+<!--//这些包除了Controller交给Spring MVC扫描管理,其他的都丢给Spring管理-->
+  <!--<context:component-scan base-package="com.anyquant" use-default-filters="false">-->
+  <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+
+  <!--</context:component-scan>-->
+
+ <!--配置c3p0数据库连接池-->
+  <bean id="local" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+    <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+    <property name="jdbcUrl" value="${mysqldb.url}">
+    </property>
+    <property name="user" value="${mysqldb.user}"/>
+    <property name="password" value="556689"/>
+    <property name="maxPoolSize" value="40"/>
+    <property name="minPoolSize" value="1"/>
+    <property name="initialPoolSize" value="1"/>
+    <property name="maxIdleTime" value="20"/>
+  </bean>
+
+  <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <property name="dataSource" ref="local"/>
+    <!-- 自动扫描注解方式配置的hibernate类文件 -->
+
+
+    <!--该配置可以使一个类映射多张表-->
+    <!--<property name="namingStrategy">-->
+      <!--<bean class="org.hibernate.cfg.ImprovedNamingStrategy"></bean>-->
+    <!--</property>-->
+
+
+    <property name="packagesToScan">
+      <list>
+        <value>com.anyquant.model</value>
+      </list>
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.dialect">
+          org.hibernate.dialect.MySQLDialect
+        </prop>
+        <!--hibernate.hbm2ddl.auto设为create为每次启动清空数据 供测试用,update不清空 -->
+
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.format_sql">true</prop>
+      </props>
+    </property>
+  </bean>
+
+
+
+  <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+  <tx:annotation-driven transaction-manager="transactionManager"/>
+  <!-- 需要引入tx的命名空间 -->
+
+
+</beans>

@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+/*html, body{*/
+/*padding:0;*/
+/*margin:0;*/
+/*position:relative;*/
+/*background:url(../img/body.jpg);*/
+/*background-repeat:repeat;*/
+/*color:#fff;*/
+/*letter-spacing:1px;*/
+/*font-family:Georgia, "Times New Roman", Times, serif;*/
+/*}*/
+
+.zebra caption{
+	font-size:20px;
+	font-weight:normal;
+	background:url(../img/zebratable.png);
+	background-repeat:no-repeat;
+	/*background-position: 130px center;*/
+	padding-top: 20px;
+	height:50px;}
+
+#container{
+	padding-top:20px;
+	width:960px;
+	margin:0 auto;
+}
+
+table {
+	/*border-collapse: collapse;*/
+	border-spacing: 0;
+	width:100%;
+	-webkit-box-shadow:  0px 2px 1px 5px rgba(242, 242, 242, 0.1);
+	box-shadow:  0px 2px 1px 5px rgba(242, 242, 242, 0.1);
+}
+
+.zebra {
+	/*border: 1px solid #555;*/
+}
+
+.zebra td {
+	/*border-left: 1px solid #555;*/
+	/*border-top: 1px solid #555;*/
+	padding: 8px;
+	text-align: center;
+}
+
+.zebra th, .zebra th:hover {
+	/*border-left: 1px solid #555;*/
+	/*border-bottom: 1px solid #828282;*/
+	padding: 14px;
+	background-color: #3ec9c3 !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#3ec9c3), to(#3ec9c3)) !important;
+	background-image: -webkit-linear-gradient(top,#3ec9c3,#3ec9c3) !important;
+	background-image:    -moz-linear-gradient(top, #3ec9c3,#3ec9c3) !important;
+	background-image:     -ms-linear-gradient(top, #3ec9c3, #3ec9c3) !important;
+	background-image:      -o-linear-gradient(top,#3ec9c3,#3ec9c3) !important;
+	background-image:         linear-gradient(top, #3ec9c3,#3ec9c3) !important;
+	color:#000 !important;
+	font-weight:normal;
+}
+
+.zebra tbody tr:nth-child(even) {
+	/*background: #9d9d9d !important;*/
+	background: wheat!important;
+	color:#000;
+}
+
+.zebra tr:hover *{
+	/*background: #eeeeee;*/
+	background: #3ec9c3;
+	color:#000;
+}
+
+.zebra tr {
+	background: #6fffbc;
+	color:#000;
+}

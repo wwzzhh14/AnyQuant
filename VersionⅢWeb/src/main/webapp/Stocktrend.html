@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="styles-sxc.css" />
+    <title>AnyQuant | Stocktrend</title>
+    <script src="echarts.js"></script>
+
+    <style>
+
+        #gragha {
+            width: 700px;
+            height: 500px;
+            float: left;
+            margin-left: 400px;
+            margin-right: 50px;
+            margin-bottom: 100px;;
+        }
+        #gragha li {
+            float: left;
+            width: 100px;
+            margin-top: 15px;
+            margin-left: 55px;
+            margin-bottom: 50px;
+            background-color: #CCC;
+            text-align: center;
+        }
+        #gragha a {
+            font-size: 18px;
+            font-family: Verdana, Geneva, sans-serif;
+            color: #363636;
+        }
+        #gragha a:hover {
+            color: green;
+        }
+        #recom {
+            width: 300px;
+            height: 400px;
+            float: left;
+        }
+        .title {
+            margin-top: 20px;
+            height: 50px;
+            font-size: 24px;
+        }
+        #graghb {
+            width: 700px;
+            height: 500px;
+            clear: left;
+            margin-left: 400px;
+        }
+        #graghb li {
+            float: left;
+            width: 100px;
+            margin-top: 15px;
+            margin-left: 60px;
+            margin-bottom:100px ;
+            background-color: #CCC;
+            text-align: center;
+        }
+        #graghb a {
+            font-size: 18px;
+            font-family: Verdana, Geneva, sans-serif;
+            color: #363636;
+        }
+        #graghb a:hover {
+            color: green;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="wrapper_content">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated<> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="wrapper">
+        <header>
+            <a href="index.php" id="logo" class="ir">Website</a>
+            <!--<ul class="socials">-->
+            <!--<li><a target="_blank" href="https://twitter.com/bestpsdfreebies" class="ir twitter">twitter</a><>-->
+            <!--<li><a target="_blank" href="https://www.facebook.com/bestpsdfreebies" class="ir facebook">facebook</a><>-->
+            <!--<li><a target="_blank" href="http://feeds.feedburner.com/bestpsdfreebies" class="ir rss">rss</a><>-->
+            <!--<li><a target="_blank" href="http://www.pinterest.com/mjreimer/psd-freebies/" class="ir pinterest">pinterest</a><>-->
+            <!--<li><a target="_blank" href="https://plus.google.com/102784875057987299787/posts" class="ir google">google+</a><>-->
+            <!--<li><a target="_blank" href="http://dribbble.com/bestpsdfreebies" class="ir dribbble">dribbble</a><>-->
+            <!--<li><a href="#" class="ir linkedin">linkedin</a><>-->
+            <!--<li><a href="#" class="ir flickr">flickr</a><>-->
+            <!--<li><a href="#" class="ir youtube">youtube</a><>-->
+            <!--</ul>-->
+        </header>
+    </div><!-- /wrapper -->
+    <div id="menu">
+        <div class="wrapper">
+            <div id="menu_trigger" class="mobile">menu</div>
+            <nav>
+                <ul>
+                    <li><a href="WEB-INF/index.html">Home</a></li>
+                    <li><a href="portfolio.html">Plate</a></li>
+                    <li><a href="about.html">Stock</a></li>
+                    <li><a href="services.html">Recomendation</a></li>
+                    <li><a href="archive.html">About</a></li>
+
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="search">
+                <form method="post" action="#" id="search_form">
+                    <fieldset>
+                        <input type="text" id="search_text" placeholder="Search">
+                        <input type="submit" value="GO" id="search_submit">
+                        <p class="btn_search">search</p>
+                    </fieldset>
+                </form>
+            </div>
+            <script type="text/javascript">
+                jQuery(document).on('click', "#menu .btn_search", function (e) {
+                    e.preventDefault()
+                    jQuery('#menu #search_text').stop(true,true).animate({width:'show'},400).focus();
+                    jQuery(this).hide(0);
+                    jQuery('#menu #search_submit').show(0);
+                });
+                if(!isIE()){
+                    jQuery(document).on('blur', "#search_form", function (e) {
+                        e.preventDefault()
+                        var search_text = jQuery('#search_text').val();
+                        if(search_text==''){
+                            jQuery('#menu #search_text').stop(true,true).animate({width:'hide'},100);
+                            jQuery('#menu .btn_search').show(0);
+                            jQuery('#menu #search_submit').hide(0);
+                        }
+                    });
+                }
+            </script>
+
+            <div class="clearfix"></div>
+        </div><!-- /wrapper -->
+    </div>
+    <div id="featured">
+        <div class="wrapper">
+            <h1>南京银行</h1>
+        </div>
+    </div><!-- /featured -->
+    <div class="clearfix"></div>
+
+
+    <div id="main">
+        <div id="gragha">
+            <div class="title"><strong>最近大涨股票图</strong></div>
+            <ul id="graghasearch">
+                <li><a href="#">最高</a></li>
+                <li><a href="#">最低</a></li>
+                <li><a href="#">开盘</a></li>
+                <li><a href="#">收盘</a></li>
+            </ul>
+            <div id="gone"style="height:380px;width:600px;margin:50px 10px 0px 50px;">
+            </div>
+            <script type="text/javascript">
+                var myChart=echarts.init(document.getElementById('gone'));
+                function randomData() {
+                    now = new Date(+now + oneDay);
+                    value = value + Math.random() * 21 - 10;
+                    return {
+                        name: now.toString(),
+                        value: [
+                            [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'),
+                            Math.round(value)
+                        ]
+                    }
+                }
+
+                var data = [];
+                var now = +new Date(1997, 9, 3);
+                var oneDay = 24 * 3600 * 1000;
+                var value = Math.random() * 1000;
+                for (var i = 0; i < 1000; i++) {
+                    data.push(randomData());
+                }
+
+                option = {
+                    title: {
+                        text: '动态数据 + 时间坐标轴'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: function (params) {
+                            params = params[0];
+                            var date = new Date(params.name);
+                            return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+                        },
+                        axisPointer: {
+                            animation: false
+                        }
+                    },
+                    xAxis: {
+                        type: 'time',
+                        splitLine: {
+                            show: false
+                        }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        boundaryGap: [0, '100%'],
+                        splitLine: {
+                            show: false
+                        }
+                    },
+                    series: [{
+                        name: '模拟数据',
+                        type: 'line',
+                        showSymbol: false,
+                        hoverAnimation: false,
+                        data: data
+                    }]
+                };
+
+
+                myChart.setOption(option);
+            </script>
+        </div>
+        <div id="recom">
+            <div class="title"><strong>热门股票</strong></div>
+        </div>
+        <div id="graghb">
+            <div class="title"><strong>最近大跌股票图</strong></div>
+            <ul id="graghbsearch">
+                <li><a href="#">最高</a></li>
+                <li><a href="#">最低</a></li>
+                <li><a href="#">开盘</a></li>
+                <li><a href="#">收盘</a></li>
+            </ul>
+            <div id="gtwo"style="height:380px;width:600px;margin:50px 10px 0px 50px;">
+
+            </div>
+        </div>
+    </div>
+</div><!-- /wrapper -->
+    	<div class="wrapper">
+	    	<footer>
+	    		<section class="top">
+	    			<div class="info">
+			        	<a href="#" class="ir" id="logo_footer">Website</a>
+			        	<!--<ul class="socials">
+			        		<li><a target="_blank" href="https://twitter.com/bestpsdfreebies" class="ir twitter">twitter</a></li>
+			        		<li><a target="_blank" href="https://www.facebook.com/bestpsdfreebies" class="ir facebook">facebook</a></li>
+			        		<li><a target="_blank" href="http://feeds.feedburner.com/bestpsdfreebies" class="ir rss">rss</a></li>
+			        		<li><a target="_blank" href="http://www.pinterest.com/mjreimer/psd-freebies/" class="ir pinterest">pinterest</a></li>
+			        	</ul>-->
+	    				<p>一个基于Java Applet的股票分析展现软件，通过对股票数据的展现和分析，能给出让人比较感兴趣的结论和报告，有比较新颖的展现图表等方式。</p>
+	    			</div> 
+	    			<div class="widgets">
+	    				<div class="widget widget_text">
+	    					<h3 class="widgettitle">联系方式</h3>
+	    					<div class="textwidget">
+	    						<p>栖霞区，仙林大道163号<br>南京, 江苏 <br>中国, 210023</p>
+	    						<p>info@AnyQuant.ca</p>
+	    						<h4>114.55.35.12</h4>
+	    					</div>
+	    				</div>
+	    				<div class="widget widget_menu">
+	    					<h3 class="widgettitle">快速链接</h3>
+			        		<ul>
+								<li><a href="home.html">首页</a></li>
+								<li><a href="plate.html">大盘</a></li>
+								<li><a href="StockList.html.html">股票</a></li>
+								<li><a href="Recommend.html">推荐</a></li>
+								<li><a href="about.html">关于我们</a></li>
+								<li><a href="contact.html">联系我们</a></li>
+			        		</ul>
+	    				</div>
+	    				<div class="widget widget_newsletter last">
+	    					<h3 class="widgettitle">通讯</h3>
+	    					<div class="textwidget">
+	    						<p>你的任何意见对我们来说都很宝贵</p>
+				        		<form method="post" action="#">
+				        			<fieldset>
+				        				<input type="text" placeholder="Email">
+				        				<input type="submit" value="OK">
+				        			</fieldset>
+				        		</form>
+	    					</div>
+	    				</div>
+	    			</div>
+	    		</section><!-- /top -->
+	    		<section class="bottom">
+	    			<p class="copyrights">股市有风险，投资需谨慎。Copyright 2016 AnyQuant. All Rights Reserved.</p>
+	    			<ul>
+	    				<li><a href="about.html">About</a></li>
+	    				<li><a href="#">Privacy Policy</a></li>
+	    				<li><a href="contact.html">Contact</a></li>
+	    			</ul>
+	    		</section><!-- /bottom -->
+	    	</footer><!-- /footer -->
+		</div><!-- /wrapper -->
+</body>
+</html>
+
